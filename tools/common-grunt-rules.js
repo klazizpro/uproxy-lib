@@ -7,9 +7,9 @@ var exports;
     function typescriptSrc(name) {
         return {
             src: [
-                'build/' + name + '/**/*.ts',
+                'build/' + name + '/**.ts',
                 '!**/*.spec.ts',
-                '!**/*.d.ts',
+                '!**/*.d.ts'
             ],
             options: {
                 sourceRoot: 'build/',
@@ -23,14 +23,15 @@ var exports;
         };
     }
     exports.typescriptSrc = typescriptSrc;
+
     // Compiles a module's tests and declarations, in order to
     // help test that declarations match their implementation.
     // The files must already be available under build/.
     function typescriptSpecDecl(name) {
         return {
             src: [
-                'build/' + name + '/**/*.spec.ts',
-                'build/' + name + '/**/*.d.ts',
+                'build/' + name + '/**.spec.ts',
+                'build/' + name + '/**.d.ts'
             ],
             options: {
                 sourceRoot: 'build/',
@@ -44,6 +45,7 @@ var exports;
         };
     }
     exports.typescriptSpecDecl = typescriptSpecDecl;
+
     // Copies a module's directory from build/ to dist/.
     // Test-related files are excluded.
     // CONSIDER: rename to copyModuleToDest so you can understand it when only
@@ -61,6 +63,7 @@ var exports;
         };
     }
     exports.copyModule = copyModule;
+
     // Copies build/* to a sample's directory under dist/.
     // The samples directory itself and TypeScript files are excluded.
     // TODO: copy dist/* instead
@@ -73,7 +76,7 @@ var exports;
                     src: [
                         '**',
                         '!samples/**',
-                        '!**/*.ts',
+                        '!**/*.ts'
                     ],
                     dest: 'dist/' + name + '/lib/',
                     onlyIf: 'modified'
@@ -82,6 +85,7 @@ var exports;
         };
     }
     exports.copySampleFiles = copySampleFiles;
+
     // Function to make jasmine spec assuming expected dir layout.
     function jasmineSpec(name) {
         var jasmine_helpers = [
@@ -92,15 +96,15 @@ var exports;
         ];
         return {
             src: jasmine_helpers.concat([
-                'build/' + name + '/**/*.js',
-                '!build/' + name + '/**/*.spec.js'
+                'build/' + name + '/**.js',
+                '!build/' + name + '/**.spec.js'
             ]),
             options: {
-                specs: 'build/' + name + '/**/*.spec.js',
+                specs: 'build/' + name + '/**.spec.js',
                 outfile: 'build/' + name + '/SpecRunner.html',
                 keepRunner: true
             }
         };
     }
     exports.jasmineSpec = jasmineSpec;
-})(exports || (exports = {})); // module Rules
+})(exports || (exports = {}));

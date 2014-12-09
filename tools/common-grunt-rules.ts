@@ -7,7 +7,7 @@ module exports {
   export function typescriptSrc(name:string) {
     return {
       src: [
-        'build/' + name + '/**/*.ts',
+        'build/' + name + '/**.ts',
         '!**/*.spec.ts',
         '!**/*.d.ts',
       ],
@@ -29,8 +29,8 @@ module exports {
   export function typescriptSpecDecl(name:string) {
     return {
       src: [
-        'build/' + name + '/**/*.spec.ts',
-        'build/' + name + '/**/*.d.ts',
+        'build/' + name + '/**.spec.ts',
+        'build/' + name + '/**.d.ts',
       ],
       options: {
         sourceRoot: 'build/',
@@ -93,11 +93,11 @@ module exports {
       ];
     return {
       src: jasmine_helpers.concat([
-        'build/' + name + '/**/*.js',
-        '!build/' + name + '/**/*.spec.js'
+        'build/' + name + '/**.js',
+        '!build/' + name + '/**.spec.js'
       ]),
       options: {
-        specs: 'build/' + name + '/**/*.spec.js',
+        specs: 'build/' + name + '/**.spec.js',
         outfile: 'build/' + name + '/SpecRunner.html',
         keepRunner: true
       }
